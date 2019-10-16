@@ -1,0 +1,33 @@
+.setValuesForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 25px;
+}
+
+.input {
+  margin: 5px;
+  height: 5vh;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--inputColor);
+  font-family: "Titillium Web", sans-serif;
+  font-size: 27px;
+  color: var(--inputColor);
+  text-align: center;
+}
+
+.nameOfTransaction {
+  width: 20vw;
+}
+
+.cash::placeholder,
+.nameOfTransaction::placeholder {
+  text-align: center;
+  font-size: 20px;
+  font-weight: lighter;
+  letter-spacing: 2px;
+  color: var(--inputColor);
+  opacity: 0.5;
+}

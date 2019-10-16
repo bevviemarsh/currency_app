@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css?family=Titillium+Web:200&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --darkerColor: hsla(201, 0%, 5%, 0.94);
+  --lighterColor: hsla(201, 0%, 62%, 0.97);
+  --shadowColor: hsla(195, 0%, 3%, 0.99);
+  --inputColor: hsla(360, 0%, 82%, 0.83);
+}
+
+body {
+  background-color: var(--darkerColor);
+  color: var(--lighterColor);
+  font-family: "Titillium Web", sans-serif;
+  letter-spacing: 2px;
+  text-shadow: 5px 5px 5px var(--shadowColor);
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.containerTransactions {
+  height: 40%;
+  width: 100%;
+  border-bottom: 5px solid var(--lighterColor);
+  box-shadow: 0 0 10px 10px var(--shadowColor);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.formContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.containerList {
+  height: 60%;
+  flex-basis: 60%;
+  border-right: 5px solid var(--lighterColor);
+  box-shadow: 0px 20px 10px 10px var(--shadowColor);
+  position: relative;
+}
+
+.containerSummary {
+  height: 60%;
+  flex-grow: 1;
+  position: relative;
+}
+
+.header {
+  text-align: center;
+  margin: 5px;
+  font-size: 3em;
+}

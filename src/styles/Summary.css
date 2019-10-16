@@ -1,0 +1,27 @@
+.summaryBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nameOfResult {
+  font-size: 20px;
+}
+
+.result {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.theHighestBox {
+  text-align: center;
+  font-weight: normal;
+  font-size: 25px;
+}
