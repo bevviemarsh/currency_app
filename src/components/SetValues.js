@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../styles/SetValues.css";
+import { connect } from "react-redux";
 
 class SetValues extends Component {
   state = {
@@ -11,7 +12,14 @@ class SetValues extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    if (!this.state.name || !this.state.amountOfEuro) {
+    if (
+      !this.state.name ||
+      !this.state.amountOfEuro ||
+      !Number(this.state.amountOfEuro)
+    ) {
+      this.setState({
+        amountOfEuro: ""
+      });
       return;
     }
 
@@ -69,4 +77,10 @@ class SetValues extends Component {
   }
 }
 
-export default SetValues;
+const mapStateToProps = state => {
+  return {
+    conversion: state.conversion
+  };
+};
+
+export default connect(mapStateToProps)(SetValues);

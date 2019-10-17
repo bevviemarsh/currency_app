@@ -9,6 +9,13 @@ class SetConversion extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
+    if (!Number(this.state.conversion)) {
+      this.setState({
+        conversion: ""
+      });
+      return;
+    }
+
     this.props.add(this.state.conversion);
 
     this.setState({

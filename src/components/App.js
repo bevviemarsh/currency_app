@@ -5,26 +5,26 @@ import AddConversion from "./AddConversion";
 import TransactionsList from "./TransactionsList";
 import Summary from "./Summary";
 import "../styles/App.css";
+import { connect } from "react-redux";
+import * as actions from "../actions/actions";
 
 class App extends Component {
   counter = 0;
+
   state = {
-    conversion: "",
     transactions: []
   };
 
   addConversion = conversion => {
-    this.setState({
-      conversion
-    });
+    this.props.setConversion(conversion);
   };
 
   addTransaction = transaction => {
-    if (this.state.conversion === "") {
+    if (this.props.conversion === "") {
       return;
     }
 
-    transaction.zloty = this.state.conversion * transaction.amountOfEuro;
+    transaction.zloty = this.props.conversion * transaction.amountOfEuro;
 
     transaction.zloty = parseFloat(transaction.zloty).toFixed(2);
 
@@ -56,11 +56,8 @@ class App extends Component {
             <h1 className="header">SET ALL VALUES</h1>
             <div className="formContainer">
               <SetConversion add={this.addConversion} />
-              <AddConversion conversion={this.state.conversion} />
-              <SetValues
-                add={this.addTransaction}
-                conversion={this.state.conversion}
-              />
+              <AddConversion conversion={this.props.conversion} />
+              <SetValues add={this.addTransaction} />
             </div>
           </div>
           <div className="containerList">
@@ -68,11 +65,15 @@ class App extends Component {
             <TransactionsList
               transactions={this.state.transactions}
               deleteTransaction={this.deleteTransaction}
+              conversion={this.props.conversion}
             />
           </div>
           <div className="containerSummary">
             <h1 className="header">SUMMARY</h1>
-            <Summary transactions={this.state.transactions} />
+            <Summary
+              transactions={this.state.transactions}
+              conversion={this.props.conversion}
+            />
           </div>
         </div>
       </div>
@@ -80,4 +81,19 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    conversion: state.conversion
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setConversion: conversion => dispatch(actions.setConversion(conversion))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

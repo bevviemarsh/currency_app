@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Summary.css";
 
-const Summary = ({ transactions }) => {
+const Summary = ({ transactions, conversion }) => {
   if (transactions.length === 0) {
     return (
       <div>
@@ -14,14 +14,20 @@ const Summary = ({ transactions }) => {
       </div>
     );
   } else if (transactions.length === 1) {
-    const result = transactions.map(transaction => transaction.zloty);
+    const result = transactions.map(transaction =>
+      (transaction.amountOfEuro * conversion).toFixed(2)
+    );
 
     const uniqueTransaction = transactions.map(transaction => {
       return (
         <div className="theHighestBox" key={transaction.id}>
           {transaction.name}:
           <span className="numberOnList">{transaction.amountOfEuro}</span>
-          EURO =<span className="numberOnList">{transaction.zloty}</span>PLN
+          EURO =
+          <span className="numberOnList">
+            {(transaction.amountOfEuro * conversion).toFixed(2)}
+          </span>
+          PLN
         </div>
       );
     });
@@ -37,7 +43,9 @@ const Summary = ({ transactions }) => {
       </div>
     );
   } else {
-    const result = transactions.map(transaction => transaction.zloty);
+    const result = transactions.map(
+      transaction => transaction.amountOfEuro * conversion
+    );
     const sum = result.reduce((a, b) => {
       const sumResult = parseFloat(a) + parseFloat(b);
       const newSumResult = sumResult.toFixed(2);
@@ -49,13 +57,20 @@ const Summary = ({ transactions }) => {
     const numIndex = parseFloat(index).toFixed(2);
 
     const theHighest = transactions
-      .filter(transaction => transaction.zloty === numIndex)
+      .filter(
+        transaction =>
+          (transaction.amountOfEuro * conversion).toFixed(2) === numIndex
+      )
       .map(transaction => {
         return (
           <div className="theHighestBox" key={transaction.id}>
             {transaction.name}:
             <span className="numberOnList">{transaction.amountOfEuro}</span>
-            EURO =<span className="numberOnList">{transaction.zloty}</span>PLN
+            EURO =
+            <span className="numberOnList">
+              {(transaction.amountOfEuro * conversion).toFixed(2)}
+            </span>
+            PLN
           </div>
         );
       });
