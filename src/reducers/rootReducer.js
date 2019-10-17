@@ -1,8 +1,7 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initState = {
-  conversion: "",
-  transactions: []
+  conversion: ""
 };
 
 const rootReducer = (state = initState, action) => {
