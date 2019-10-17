@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "../styles/SetValues.css";
-import { connect } from "react-redux";
 
 class SetValues extends Component {
   state = {
@@ -77,10 +76,4 @@ class SetValues extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    conversion: state.conversion
-  };
-};
-
-export default connect(mapStateToProps)(SetValues);
+export default SetValues;
